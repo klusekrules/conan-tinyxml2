@@ -13,8 +13,8 @@ class TinyxmlConan(ConanFile):
     generators = "cmake"
 
     def source(self):
-       self.run("git clone https://github.com/leethomason/tinyxml2")
-       self.run("cd tinyxml2 && git checkout %s" % self.version)
+        self.run("git clone https://github.com/leethomason/tinyxml2")
+        self.run("cd tinyxml2 && git checkout %s" % self.version)
 
     def build(self):
         cmake = CMake(self.settings)
