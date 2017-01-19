@@ -4,6 +4,7 @@ import os
 
 class TinyxmlConan(ConanFile):
     name = "tinyxml2"
+    description="TinyXML-2 is a simple, small, efficient, C++ XML parser"
     version = "4.0.1"
     license = "MIT"
     url = "https://github.com/cinderblocks/conan-tinyxml2"
