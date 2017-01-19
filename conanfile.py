@@ -14,14 +14,18 @@ class TinyxmlConan(ConanFile):
     generators = "cmake"
 
     def source(self):
-       self.run("git clone https://github.com/leethomason/tinyxml2")
-       self.run("cd tinyxml2 && git checkout %s" % self.version)
+        self.run("git clone https://github.com/leethomason/tinyxml2")
+        self.run("cd tinyxml2 && git checkout %s" % self.version)
 
     def build(self):
         cmake = CMake(self.settings)
-        shared = "-DBUILD_SHARED_LIBS=ON" if self.options.shared else ""
-        self.run('cmake tinyxml2 %s %s' % (cmake.command_line, shared))
-        self.run("cmake --build . %s" % cmake.build_config)
+        build_shared = bool(self.options.shared)
+        cmake_args = [ "-DBUILD_SHARED_LIBS=%s" % int(build_shared)
+                     , "-DBUILD_STATIC_LIBS=%s" % int(not build_shared)
+                     ]
+        self.run('cmake tinyxml2 %s %s' % (cmake.command_line, " ".join(cmake_args)))
+        target_name = "tinyxml2" if build_shared else "tinyxml2_static"
+        self.run("cmake --build . --target %s %s" % (target_name, cmake.build_config))
 
     def package(self):
         self.copy("*.h", dst="include/tinyxml2", src="tinyxml2")
