@@ -18,7 +18,7 @@ class TinyxmlConan(ConanFile):
         self.run("cd tinyxml2 && git checkout %s" % self.version)
 
     def build(self):
-        cmake = CMake(self.settings)
+        cmake = CMake(self)
         build_shared = bool(self.options.shared)
         cmake_args = [ "-DBUILD_SHARED_LIBS=%s" % int(build_shared)
                      , "-DBUILD_STATIC_LIBS=%s" % int(not build_shared)
