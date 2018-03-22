@@ -8,7 +8,7 @@ username = os.getenv("CONAN_USERNAME", "ebostijancic")
 
 class TinyxmlTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    requires = "tinyxml2/4.0.1@%s/%s" % (username, channel)
+    requires = "tinyxml2/6.0.0@%s/%s" % (username, channel)
     generators = "cmake"
 
     def build(self):
