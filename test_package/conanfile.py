@@ -3,7 +3,7 @@ import os
 
 
 channel = os.getenv("CONAN_CHANNEL", "testing")
-username = os.getenv("CONAN_USERNAME", "ebostijancic")
+username = os.getenv("CONAN_USERNAME", "giacobenin")
 
 
 class TinyxmlTestConan(ConanFile):
@@ -13,7 +13,7 @@ class TinyxmlTestConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        self.run('cmake "%s" %s' % (self.conanfile_directory, cmake.command_line))
+        self.run('cmake "%s" %s' % (self.source_folder, cmake.command_line))
         self.run("cmake --build . %s" % cmake.build_config)
 
     def imports(self):
