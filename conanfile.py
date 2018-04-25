@@ -5,9 +5,9 @@ import os
 class TinyxmlConan(ConanFile):
     name = "tinyxml2"
     description="TinyXML-2 is a simple, small, efficient, C++ XML parser"
-    version = "6.0.0"
+    version = "3.0.0"
     license = "MIT"
-    url = "https://github.com/giacobenin/conan-tinyxml2"
+    url = "https://github.com/klusekrules/conan-tinyxml2"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False]}
     default_options = "shared=True"
@@ -29,7 +29,7 @@ class TinyxmlConan(ConanFile):
 
     def package(self):
         self.copy("*.h", dst="include/tinyxml2", src="tinyxml2")
-        self.copy("*.dll", dst="lib", keep_path=False)
+        self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.lib", dst="lib", keep_path=False)
         self.copy("*.so*", dst="lib", keep_path=False)
         self.copy("*.dylib", dst="lib", keep_path=False)
